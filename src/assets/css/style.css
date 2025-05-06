@@ -28,5 +28,15 @@ main {
 }
 
 .message {
-    font-weight: ;
+    font-weight: 400;
+    padding-block: 4px;
+    font-size: 12px;
+}
+
+.safe-message {
+    color: #48bb48;
+}
+
+.error-message {
+    color: rgb(225, 83, 83);
 }
