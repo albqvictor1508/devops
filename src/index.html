@@ -4,19 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Login page</title>
+    <title>Sign up page</title>
 </head>
 <body>
     <main>
-        <h2>Login</h2>
+        <h2>Sign up</h2>
+        <p>Please enter your details for sign in.</p>
         <form>
             <label for="username">Username</label>
-            <input type="text" id="username">
+            <input type="text" id="username" />
             <label for="password">Password</label>
-            <input type="text" id="password">
-            <button type="submit">Send</button>
+            <input type="text" id="password" />
+            <button class="signin-button" type="submit">Sign In</button>
+            <div class="checkbox-forgot-password">
+                <div class="remember-me-checkbox">
+                    Remember me for 30 days.
+                    <input type="checkbox" id="remember-me" name="" />
+                </div>
+                <a href="#">Forgot Your Password?</a>
+            </div>
         </form>
+
+        <p>or</p>
+
+        <button href="#">Talk in Whatsapp</button>
+        <p>Are you new? <a href="#">Create an Account</a></p>
     </main>
+    <aside>
+        <!-- imagem -->
+    </aside>
 </body>
 <script src="assets/js/script.js"></script>
 </html>
