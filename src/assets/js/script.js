@@ -13,6 +13,7 @@ const init = () => {
 }
 
 const validateInputs = ({usernameInput, passwordInput}) => {
+    resetDefaultColor(usernameInput, passwordInput);
     clearMessages();
 
     let valid = true;
@@ -33,10 +34,11 @@ const validateInputs = ({usernameInput, passwordInput}) => {
     return {username, password};
 }
 
-const changeFieldColor = (field, isError) => {
+const changeFieldColor = (div, field, isError) => {
+
     div.classList.add("message")
     if(!isError) {
-        field.style.backgroundColor = "green";
+        field.style.borderColor = "green";
         div.classList.add("safe-message");
         return;
     }
@@ -48,7 +50,7 @@ const handleMessage = (msg, field, isError) => {
     const div = document.createElement("div");
     field.insertAdjacentElement("afterend",div);
     div.textContent = msg;
-    changeFieldColor(field, isError);
+    changeFieldColor(div, field, isError);
 }
 
 const clearMessages = () => {
@@ -75,4 +77,10 @@ const checkout = async (formData) => {
     //         password: validatedData.password
     //     }
     // })
+}
+
+const resetDefaultColor = (...inputs) => {
+    inputs.forEach(i => {
+        i.style.borderColor = "#aca3a3";
+    })
 }
