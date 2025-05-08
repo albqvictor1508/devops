@@ -7,36 +7,41 @@
     <title>Sign up page</title>
 </head>
 <body>
-    <main>
-        <!-- colocar uma logo qualquer aq -->
-         <h2>Sign in</h2>
-        <form>
-            <div class="form-input-div">
-                <label for="username" class="username-label">Username</label>
-                <input type="text" id="username" />
-            </div>
-            <div class="form-input-div">
-                <label for="password">Password</label>
-                <input type="text" id="password" />
-            </div>
-            <button type="submit">Sign in</button>
-            <div class="checkbox-forgot-password">
-                <div class="remember-me-checkbox">
-                    Remember me for 30 days.
-                    <input type="checkbox" id="remember-me" name="" />
+    <div class="container">
+        <aside>
+            salve
+        </aside>
+        <main>
+            <div class="form-container">
+                     <!-- colocar uma logo qualquer aq -->
+             <h2>Sign in</h2>
+             <form>
+                 <div class="form-input-div">
+                     <label for="username" class="username-label">Username</label>
+                     <input type="text" id="username" />
+                 </div>
+                 <div class="form-input-div">
+                     <label for="password">Password</label>
+                     <input type="text" id="password" />
                 </div>
-                <a href="#">Forgot Your Password?</a>
+
+                <div class="forgot-password-submit-form">
+                    <button type="submit">Sign in</button>
+                    <div class="forgot-password-div">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </div>
             </div>
-        </form>
+       
 
-        <p>or</p>
-
-        <button href="#">Talk in Whatsapp</button>
-        <p>Are you new? <a href="#">Create an Account</a></p>
-    </main>
-    <aside>
-        <!-- imagem -->
-    </aside>
+            </form>
+    
+            <p>or</p>
+    
+            <button href="#">Talk in Whatsapp</button>
+            <p>Are you new? <a href="#">Create an Account</a></p>
+        </main>
+    </div>
 </body>
 <script src="assets/js/script.js"></script>
 </html>
