@@ -54,7 +54,7 @@ form {
     padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 30px;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -68,7 +68,7 @@ form * {
 form input[type="text"] {
     border: 2px solid var(--light-gray-text-color);
     border-radius: 5px;
-    padding: 6px 8px;
+    padding: 8px;
 }
 
 form > button[type = "submit"] {
@@ -77,5 +77,5 @@ form > button[type = "submit"] {
     font-size: 14px;   
     font-weight: bold;
     color: white;
-    padding: 8px 10px;
+    padding: 10px;
 }

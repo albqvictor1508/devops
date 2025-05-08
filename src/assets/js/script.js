@@ -33,12 +33,22 @@ const validateInputs = ({usernameInput, passwordInput}) => {
     return {username, password};
 }
 
+const changeFieldColor = (field, isError) => {
+    div.classList.add("message")
+    if(!isError) {
+        field.style.backgroundColor = "green";
+        div.classList.add("safe-message");
+        return;
+    }
+    field.style.borderColor = "red";
+    div.classList.add("error-message");
+}
+
 const handleMessage = (msg, field, isError) => {
     const div = document.createElement("div");
-    div.textContent = msg;
-    div.classList.add("message")
-    isError === true ? div.classList.add("error-message") : div.classList.add("safe-message"); 
     field.insertAdjacentElement("afterend",div);
+    div.textContent = msg;
+    changeFieldColor(field, isError);
 }
 
 const clearMessages = () => {
