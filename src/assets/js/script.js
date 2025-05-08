@@ -34,5 +34,8 @@ const handleMessage = (msg, field, isError) => {
 }
 
 const clearMessages = () => {
-
+    const allErrorMessages = document.querySelectorAll("message")
+    for(const msg of allErrorMessages) {
+        msg.remove();
+    }
 }
