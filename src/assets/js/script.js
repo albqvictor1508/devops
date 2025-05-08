@@ -62,6 +62,8 @@ const clearMessages = () => {
 
 const checkout = async (formData) => {
     const validatedData = validateInputs(formData); 
+    const rememberMe = document.querySelector("#remember-me-check")
+    console.log(rememberMe.checked);
     
     if(!validatedData) return; 
 
