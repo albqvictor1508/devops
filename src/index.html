@@ -8,14 +8,18 @@
 </head>
 <body>
     <main>
-        <h2>Sign up</h2>
-        <p>Please enter your details for sign in.</p>
+        <!-- colocar uma logo qualquer aq -->
+         <h2>Sign in</h2>
         <form>
-            <label for="username">Username</label>
-            <input type="text" id="username" />
-            <label for="password">Password</label>
-            <input type="text" id="password" />
-            <button class="signin-button" type="submit">Sign In</button>
+            <div class="form-input-div">
+                <label for="username" class="username-label">Username</label>
+                <input type="text" id="username" />
+            </div>
+            <div class="form-input-div">
+                <label for="password">Password</label>
+                <input type="text" id="password" />
+            </div>
+            <button type="submit">Sign in</button>
             <div class="checkbox-forgot-password">
                 <div class="remember-me-checkbox">
                     Remember me for 30 days.
