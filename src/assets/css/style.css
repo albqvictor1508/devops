@@ -9,6 +9,8 @@
 
 :root {
     --light-gray-text-color: #aca3a3;
+    --light-green-text-color: #527a52;
+    --lighter-green-bg: #add1ad;
 }
 
 body {
@@ -18,6 +20,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 80px;
 }
 
 a {
@@ -32,19 +35,41 @@ a {
 
 main {
     flex: 1;
-    padding: 64px;
-    
+    padding-block: 80px;
+    padding-inline: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: yellow;
     width: 100%;
     height: 100%;
-    border: 2px solid #656565;
     border-radius: 15px;
 }
 
-aside {
+.aside-container {
     width: 100%;
     height: 100%;
-    flex: 1;
+    padding: 16px;
+    flex: 2;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.aside-into-container {
+    background-color: rebeccapurple;
+    width: 400px;
+    height: 400px;
+}
+
+aside {
+    background-color: var(--lighter-green-bg);
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
 }
 
 .message {
@@ -76,6 +101,16 @@ form {
     width: 100%;
 }
 
+.form-container {
+    width: 500px;
+
+    h1, h2 {
+        padding: 8px;
+        text-align: center;
+        color: var(--light-green-text-color);
+    }
+}
+
 form * {
     width: 100%;
 }
@@ -101,10 +136,28 @@ form button[type = "submit"] {
     gap: 10px;
 }
 
+.remember-me-div {
+    color: var(--light-gray-text-color);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+
+    input[type = "checkbox"] {
+        width: max-content;
+    } 
+}
+
 .forgot-password-div {
-    text-align: right;
+    border: 1px solid red;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     a {
+        text-align: right;
         font-family: "Sansation";
-        color: #0b0b0b;
+        color: var(--light-green-text-color);
     }
 }
