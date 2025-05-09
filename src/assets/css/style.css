@@ -50,7 +50,7 @@ main {
     width: 100%;
     height: 100%;
     padding: 16px;
-    flex: 2;
+    flex: 1;
 }
 
 aside {
@@ -78,13 +78,10 @@ aside {
     font-size: 12px;
 }
 
-.safe-message {
-    color: #48bb48;
-}
-
 .error-message {
     color: rgb(225, 83, 83);
 }
+
 
 label {
     color: var(--light-gray-text-color);
@@ -102,6 +99,7 @@ form {
 }
 
 .form-container {
+    border: 1px solid black;
     width: 500px;
 
     h1, h2 {
@@ -150,14 +148,73 @@ form button[type = "submit"] {
 }
 
 .forgot-password-div {
-    border: 1px solid red;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 16px;
     a {
         text-align: right;
         font-family: "Sansation";
+        color: var(--light-green-text-color);
+    }
+}
+
+.vital-essence-logo-div {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.vital-essence-logo-div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.or-division {
+    text-align: center;
+    color: var(--light-gray-text-color);
+}
+
+.or-division::after {
+    content: "";
+    width: 100px;
+    height: 5px;
+    background-color: var(--light-gray-text-color);
+}
+.or-division::before {
+    content: "";
+    width: 100px;
+    height: 5px;
+    background-color: var(--light-gray-text-color);
+}
+
+.division-container {
+    padding-inline: 16px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+.division-container button {
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    background-color: var(--light-green-text-color);
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px;
+}
+
+.new-link {
+    font-weight: 400;
+    color: var(--light-gray-text-color);
+    
+    a {
         color: var(--light-green-text-color);
     }
 }

@@ -5,15 +5,25 @@ form.addEventListener("submit", e => {
 })
 
 const init = () => {
-     const emailInput = document.querySelector("#email");
+     const emailInput = document.querySelector("#email");     
      checkout(emailInput);
 }
 
 const validateInput = (emailInput) => {
+    clearMessages();
     const email = emailInput.value;
+    let valid = true;
+
+    if(!email.length) {
+        handleMessage("Este campo precisa ser preenchido", emailInput, true)
+        valid = false;
+    }
+
+    if(!valid) return;
+    return email;
 }
 
-const checkout = async (emailInput) => {
+const checkout = (emailInput) => {
     const validatedEmail = validateInput(emailInput);
     if(!validatedEmail) return;
 
@@ -28,17 +38,17 @@ const handleMessage = (msg, field, isError) => {
     const div = document.createElement("div");
     field.insertAdjacentElement("afterend",div);
     div.textContent = msg;
-    changeFieldColor(div, field, isError);
+    changeFieldColor(div, field);
 }
 
 const clearMessages = () => {
-    const allErrorMessages = document.querySelectorAll(".message")
-    for(const msg of allErrorMessages) {
+    const allMessages = document.querySelectorAll(".message")
+    for(const msg of allMessages) {
         msg.remove();
     }
 }
 
-const changeFieldColor = (div, field, isError) => {
+const changeFieldColor = (div, field) => {
     div.classList.add("message")
     field.style.borderColor = "red";
     div.classList.add("error-message");
