@@ -10,6 +10,7 @@ const init = () => {
 }
 
 const validateInput = (emailInput) => {
+    resetDefaultColor(emailInput)
     clearMessages();
     const email = emailInput.value;
     let valid = true;
