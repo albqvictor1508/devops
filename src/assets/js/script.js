@@ -9,7 +9,12 @@ const init = () => {
     const usernameInput = document.querySelector("#username");
     const passwordInput = document.querySelector("#password");
     const formData = {usernameInput, passwordInput};
-    checkout(formData);
+    checkout(formData);const clearMessages = () => {
+    const allErrorMessages = document.querySelectorAll(".message")
+    for(const msg of allErrorMessages) {
+        msg.remove();
+    }
+}
 }
 
 const validateInputs = ({usernameInput, passwordInput}) => {
@@ -35,13 +40,7 @@ const validateInputs = ({usernameInput, passwordInput}) => {
 }
 
 const changeFieldColor = (div, field, isError) => {
-
     div.classList.add("message")
-    if(!isError) {
-        field.style.borderColor = "green";
-        div.classList.add("safe-message");
-        return;
-    }
     field.style.borderColor = "red";
     div.classList.add("error-message");
 }
