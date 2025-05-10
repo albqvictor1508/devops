@@ -216,3 +216,8 @@ form button[type = "submit"] {
         color: var(--light-green-text-color);
     }
 }
+
+.swiper {
+    width: 500px;
+    height: 300px;
+}
