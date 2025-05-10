@@ -16,8 +16,9 @@ public class UserController {
     public User saveUser(@RequestBody User u) {
         return service.save(u);
     }
-    
-    public void login(UserDTO u) {
+
+    @PostMapping("/login")
+    public void login(@RequestBody UserDTO u) {
         User user = service.findByUsername(u.getUsername());
         if(user == null) {
             throw new RuntimeException("user not exists");
