@@ -5,6 +5,7 @@ import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.service.UserService;
 import com.vital_essence.validation.util.JwtUtil;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,17 +43,8 @@ public class AuthController {
                 .loadUserByUsername(authRequest.getUsername());
 
         final String jwt = jwtUtil.generateToken(userDetails, authRequest.isRememberMe());
+        return ResponseEntity.status(200).body(new AuthenticationResponse(jwt));
     }
 
-    @PostMapping("/login")
-    public void login(@RequestBody AuthRequest u) {
-        User user = service.findByUsername(u.getUsername());
-        if(user == null) {
-            throw new RuntimeException("user not exists");
-        }
-        if(user.isRememberMe()) {
-            //setar o jwt com exp 30 pro cara se o remember me for coisado
-        }
-        //setar jwt com exp do mesmo dia mesmo caso o remember me não for coisado
-    }
+    static record AuthenticationResponse(String jwt) {}
 }
