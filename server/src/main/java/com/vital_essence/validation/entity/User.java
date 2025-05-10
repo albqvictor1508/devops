@@ -20,4 +20,5 @@ public class User {
     private String email;
     @Column(length = 100)
     private String password;
+    private boolean rememberMe;
 }

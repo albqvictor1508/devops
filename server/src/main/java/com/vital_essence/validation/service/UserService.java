@@ -14,8 +14,9 @@ public class UserService {
         return userRepo.existsById(id);
     }
 
-    public boolean existsByUsername(String username) {
-        return userRepo.existsByUsername(username);
+    public User findByUsername(String username) {
+        if(!userRepo.existsByUsername(username)) return null;
+        return userRepo.findByUsername(username);
     }
 
     public User save(User u) {
