@@ -65,13 +65,15 @@ public class JwtUtil {
 		return createToken(claims, userDetails.getUsername());
 	}
 
-	public String generateToken(Map<String, Object> claims, UserDetails userDetails) {
-		return createToken(claims, userDetails.getUsername());
+	public String generateToken(UserDetails userDetails, boolean rememberMe) {
+		Map<String, Object> claims = new HashMap<>();
+		return createToken(claims, userDetails.getUsername(), rememberMe);
 	}
 
-	private String createToken(Map<String, Object> claims, String subject) {
+	private String createToken(Map<String, Object> claims, String subject, boolean rememberMe) {
 		Date now = new Date();
-		Date expiryDate = new Date(now.getTime() + expiration);
+		Long expirationTime = rememberMe ? rememberMeExpiration : expiration;
+		Date expiryDate = new Date(now.getTime() + expirationTime);
 
 		return Jwts.builder()
 				.setClaims(claims)

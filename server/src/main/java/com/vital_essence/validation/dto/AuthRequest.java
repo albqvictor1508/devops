@@ -1,6 +1,5 @@
 package com.vital_essence.validation.dto;
 
-import com.vital_essence.validation.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class AuthRequest {
     private String username;
     private String password;
     private boolean rememberMe;
