@@ -7,6 +7,7 @@ import com.vital_essence.validation.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,9 +20,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 @AllArgsConstructor
 public class AuthController {
-    private final AuthenticationManager authenticationManager;
-    private final UserDetailsService userDetailsService;
-    private final JwtUtil jwtUtil;
+    private AuthenticationManager authenticationManager;
+    private UserDetailsService userDetailsService;
+    private JwtUtil jwtUtil;
+
+    public AuthController(final AuthenticationManager authenticationManager, final UserDetailsService userDetailsService, final JwtUtil jwtUtil) {
+        this.authenticationManager = authenticationManager;
+        this.jwtUtil = jwtUtil;
+        this.userDetailsService = userDetailsService;
+    }
+    public AuthController() {}
 
     @Autowired
     private UserService service;
@@ -43,6 +51,7 @@ public class AuthController {
                 .loadUserByUsername(authRequest.getUsername());
 
         final String jwt = jwtUtil.generateToken(userDetails, authRequest.isRememberMe());
+
         return ResponseEntity.status(200).body(new AuthenticationResponse(jwt));
     }
 
