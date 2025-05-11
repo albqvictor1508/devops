@@ -11,6 +11,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
 
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username);
+    }
+
     public User changePassword(ForgotPasswordRequest request) {
         User u = userRepo.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("User with this email not exists"));
         u.setPassword(request.getNewPassword());

@@ -25,6 +25,11 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final ApplicationContext applicationContext;
 
+    public JwtRequestFilter(final JwtUtil jwtUtil, final ApplicationContext applicationContext) {
+        this.jwtUtil = jwtUtil;
+        this.applicationContext = applicationContext;
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {

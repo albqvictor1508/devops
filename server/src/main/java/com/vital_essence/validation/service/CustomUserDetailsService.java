@@ -13,6 +13,15 @@ import java.util.ArrayList;
 public class CustomUserDetailsService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
+
+    public UserDetails createUser(User u) {
+        User user = userService.save(u);
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                new ArrayList<>()
+        );
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User u = userService

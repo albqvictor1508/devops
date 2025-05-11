@@ -19,10 +19,6 @@ public class CreateUserRequest {
     @NotBlank
     private String password;
 
-    public CreateUserRequest() {
-        super();
-    }
-
     public CreateUserRequest(final String username, final String email, final String password) {
         this.username = username;
         this.email = email;
