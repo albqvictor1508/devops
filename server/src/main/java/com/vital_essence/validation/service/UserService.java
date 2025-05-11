@@ -16,7 +16,7 @@ public class UserService {
 
     public User findByUsername(String username) {
         if(!userRepo.existsByUsername(username)) return null;
-        return userRepo.findByUsername(username);
+        return userRepo.findByUsername(username).orElseThrow(() -> new RuntimeException("user not founded"));
     }
 
     public User save(User u) {
