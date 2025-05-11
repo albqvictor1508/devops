@@ -1,6 +1,7 @@
 package com.vital_essence.validation.controller;
 
 import com.vital_essence.validation.dto.AuthRequest;
+import com.vital_essence.validation.dto.ForgotPasswordRequest;
 import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,10 @@ public class UserController {
         if(u.getUsername().length() < 6) {
             throw new RuntimeException("this username must to be more longer");
         }
-
         return userService.save(u);
+    }
+
+    public User changePassword(ForgotPasswordRequest request) {
+        return userService.changePassword(request);
     }
 }

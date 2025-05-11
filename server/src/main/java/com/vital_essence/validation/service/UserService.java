@@ -5,14 +5,12 @@ import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @Service
 public class UserService {
     @Autowired
     private UserRepository userRepo;
 
-    @PutMapping
     public User changePassword(ForgotPasswordRequest request) {
         User u = userRepo.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("User with this email not exists"));
         u.setPassword(request.getNewPassword());

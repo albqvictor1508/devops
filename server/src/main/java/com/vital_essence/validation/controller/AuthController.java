@@ -1,6 +1,7 @@
 package com.vital_essence.validation.controller;
 
 import com.vital_essence.validation.dto.AuthRequest;
+import com.vital_essence.validation.dto.CreateUserRequest;
 import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.service.UserService;
 import com.vital_essence.validation.util.JwtUtil;
@@ -23,6 +24,8 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
     private JwtUtil jwtUtil;
+    @Autowired
+    private UserService service;
 
     public AuthController(final AuthenticationManager authenticationManager, final UserDetailsService userDetailsService, final JwtUtil jwtUtil) {
         this.authenticationManager = authenticationManager;
@@ -31,10 +34,8 @@ public class AuthController {
     }
     public AuthController() {}
 
-    @Autowired
-    private UserService service;
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<?> createAuthToken(@RequestBody  AuthRequest authRequest) {
         try {
             authenticationManager.authenticate(
@@ -53,6 +54,16 @@ public class AuthController {
         final String jwt = jwtUtil.generateToken(userDetails, authRequest.isRememberMe());
 
         return ResponseEntity.status(200).body(new AuthenticationResponse(jwt));
+    }
+
+    @PostMapping("/register")
+    public User createUser(CreateUserRequest request) {
+        if(request.getUsername().length() < 6) {
+            throw new BadCredentialsException("Username length must to be greather than 6 characters");
+        }
+        if(request.getPassword().length() < 6) {
+            throw new BadCredentialsException("Password length must to be greather than 6 characters");
+        }
     }
 
     static record AuthenticationResponse(String jwt) {}
