@@ -14,6 +14,11 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
 
+    public CustomUserDetailsService( final PasswordEncoder passwordEncoder, final UserService userService) {
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
+    }
+
     public UserDetails createUser(User u) {
         User user = userService.save(u);
         return new org.springframework.security.core.userdetails.User(

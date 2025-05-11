@@ -3,6 +3,7 @@ package com.vital_essence.validation.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
+@Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

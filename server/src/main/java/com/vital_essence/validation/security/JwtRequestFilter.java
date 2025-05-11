@@ -1,4 +1,4 @@
-package com.example.security.jwt;
+package com.vital_essence.validation.security;
 
 import com.vital_essence.validation.util.JwtUtil;
 import jakarta.servlet.FilterChain;
@@ -6,7 +6,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +17,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@AllArgsConstructor
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
