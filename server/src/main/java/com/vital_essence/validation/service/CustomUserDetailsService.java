@@ -1,7 +1,5 @@
-package com.vital_essence.validation.security;
+package com.vital_essence.validation.service;
 
-import com.vital_essence.validation.repository.UserRepository;
-import com.vital_essence.validation.service.UserService;
 import lombok.AllArgsConstructor;
 import com.vital_essence.validation.entity.User;
 import org.springframework.security.core.userdetails.UserDetails;
