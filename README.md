@@ -37,7 +37,7 @@ The backend uses a PostgreSQL database for persistent storage, and the authentic
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd vital-essence/frontend
+   cd devops/web
 
 
 
@@ -60,8 +60,7 @@ Backend
 
 Navigate to the backend directory:
 
-cd vital-essence/backend
-
+cd devops/server
 
 
 Set up PostgreSQL:
