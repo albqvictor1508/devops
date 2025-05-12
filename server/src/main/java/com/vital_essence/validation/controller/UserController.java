@@ -21,4 +21,5 @@ public class UserController {
     public User changePassword(ForgotPasswordRequest request) {
         return service.changePassword(request);
     }
+
 }
