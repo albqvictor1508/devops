@@ -1,4 +1,9 @@
 const form = document.querySelector("form");
+
+document.addEventListener("DOMContentLoaded", e => {
+    const userEmail = localStorage.getItem("userEmail");
+})
+
 form.addEventListener("submit", e => {
     e.preventDefault();
     init();

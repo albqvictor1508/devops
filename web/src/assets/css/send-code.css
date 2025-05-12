@@ -93,3 +93,7 @@ form button[type = "submit"] {
     height: 100%;
     object-fit: cover;
 }
+
+.receive-code-form {
+    display: none;
+}

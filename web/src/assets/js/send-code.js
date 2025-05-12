@@ -1,7 +1,8 @@
-const form = document.querySelector("form");
-form.addEventListener("submit", e => {
+const sendCodeForm = document.querySelector(".send-code-form");
+sendCodeForm.addEventListener("submit", e => {
     e.preventDefault();
     init();
+     
 })
 
 const init = () => {
@@ -27,8 +28,15 @@ const validateInput = (emailInput) => {
 const checkout = (emailInput) => {
     const validatedEmail = validateInput(emailInput);
     if(!validatedEmail) return;
+    const userEmail = localStorage.setItem("userEmail", emailInput.value);
+    submitForm();
+}
 
-    //await fetch("", {});
+const fetchCode = async() => {
+    const user = await fetch("http://localhost:8080/users/code", {
+        method: "post", 
+    });
+    
 }
 
 const resetDefaultColor = (input) => {
@@ -53,4 +61,8 @@ const changeFieldColor = (div, field) => {
     div.classList.add("message")
     field.style.borderColor = "red";
     div.classList.add("error-message");
+}
+
+const submitForm = () => {
+    sendCodeForm.submit();
 }
