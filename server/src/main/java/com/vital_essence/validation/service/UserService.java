@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 public class UserService {
     @Autowired
     private UserRepository userRepo;
+    @Autowired
+    private EmailService emailService;
 
     public User findByUsername(String username) {
         return userRepo.findByUsername(username);
@@ -37,14 +39,13 @@ public class UserService {
         Integer code = 1000 + (int)(Math.random() * 9000);
         u.setCode(code);
         userRepo.save(u);
-        //enviar codigo pelo email do viado
+        emailService.sendSimpleEmail(u.getEmail(), "Reset Password - Send code", u.getCode());
     }
 
     public void receiveCode(User u, Integer code) {
         if(!u.getCode().equals(code)) {
             throw new BadCredentialsException("INVALID CODE");
         }
-
     }
 
     public User save(User u) {
