@@ -69,18 +69,6 @@ public class User {
     public Boolean isRememberMe() {
         return rememberMe;
     }
-
-<<<<<<< HEAD
-=======
-    public void setCode(final Integer code) {
-        this.code = code;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
->>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
     public String getPassword() {
         return password;
     }

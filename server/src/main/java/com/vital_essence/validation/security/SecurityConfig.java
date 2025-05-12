@@ -28,17 +28,12 @@ public class SecurityConfig {
         http.cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-<<<<<<< HEAD
-                        .requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/users/**").permitAll().anyRequest().authenticated())
-=======
                         .requestMatchers("/users/**").permitAll()
                         .requestMatchers("/auth/register").permitAll()
                         .requestMatchers("/auth/login").permitAll()
 
                         .anyRequest().authenticated()
                 )
->>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 ).addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
