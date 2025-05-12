@@ -1,6 +1,8 @@
 package com.vital_essence.validation.controller;
 
 import com.vital_essence.validation.dto.ForgotPasswordRequest;
+import com.vital_essence.validation.dto.ReceiveCodeRequest;
+import com.vital_essence.validation.dto.SendCodeRequest;
 import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,11 @@ public class UserController {
         }
     }
 
-    @PostMapping("/code/{id}")
-    public ResponseEntity<?> sendCode(@RequestBody String email) {
+    @PostMapping("/code")
+    public ResponseEntity<?> sendCode(@RequestBody SendCodeRequest request) {
         User u = null;
         try {
-            u = service.findByEmail(email);
+            u = service.findByEmail(request.getEmail());
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("ERROR TO FIND USER: " + e);
         }
@@ -35,16 +37,16 @@ public class UserController {
         return ResponseEntity.status(200).build();
     }
 
-    @PostMapping("/code/{id}")
-    public ResponseEntity<?> receiveCode(@RequestBody String email, @RequestBody Integer code) {
+    @PostMapping("/code/receive")
+    public ResponseEntity<?> receiveCode(@RequestBody ReceiveCodeRequest request) {
         User u = null;
         try {
-            u = service.findByEmail(email);
+            u = service.findByEmail(request.getEmail());
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body("ERROR TO FIND USER: " + e);
         }
         try {
-        service.receiveCode(u, code);
+        service.receiveCode(u, request.getCode());
         } catch (BadCredentialsException e) {
             return ResponseEntity.status(400).body("ERROR TO RECEIVE CODE: " + e);
         }

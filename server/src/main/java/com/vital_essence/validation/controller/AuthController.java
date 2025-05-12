@@ -72,14 +72,15 @@ public class AuthController {
             ResponseEntity.status(403).body("ERROR ON CREATE USER: " + e.getMessage());
         }
 
+        String jwt = null;
         try {
             final UserDetails userDetails = customUserDetailsService.createUser(u);
-            final String jwt = jwtUtil.generateToken(userDetails);
-            service.save(u);
-            return ResponseEntity.status(201).body(new CreateUserResponse(u.getId(), jwt));
+            jwt = jwtUtil.generateToken(userDetails);
         } catch (RuntimeException e) {
             return ResponseEntity.status(403).body("ERROR TO CREATE JWT: %s".formatted(e.getMessage()));
         }
+            service.save(u);
+            return ResponseEntity.status(201).body(new CreateUserResponse(u.getId(), jwt));
     }
 
     static record AuthenticationResponse(String jwt) {}

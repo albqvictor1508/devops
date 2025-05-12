@@ -21,9 +21,10 @@ public class UserService {
     }
 
     public User changePassword(ForgotPasswordRequest request) {
-        User u = userRepo.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("User with this email not exists"));
+        User u = userRepo.findByEmail(request.getEmail()).orElseThrow(() -> new BadCredentialsException("User with this email not exists"));
         u.setPassword(request.getNewPassword());
         userRepo.save(u);
+        emailService.sendSimpleEmail(u.getEmail(), "Password Changed - Be careful!", "Sua senha foi alterada, foi você?");
         return u;
     }
 
@@ -39,12 +40,12 @@ public class UserService {
         Integer code = 1000 + (int)(Math.random() * 9000);
         u.setCode(code);
         userRepo.save(u);
-        emailService.sendSimpleEmail(u.getEmail(), "Reset Password - Send code", u.getCode());
+        emailService.sendSimpleEmailWithCode(u.getEmail(), "Reset Password - Send code", u.getCode());
     }
 
     public void receiveCode(User u, Integer code) {
-        if(!u.getCode().equals(code)) {
-            throw new BadCredentialsException("INVALID CODE");
+        if(!(u.getCode().equals(code))) {
+            throw new BadCredentialsException("INVALID CODE, USER CODE: " + u.getCode() + ", SENDED CODE: " + code);
         }
     }
 
