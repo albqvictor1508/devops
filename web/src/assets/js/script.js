@@ -70,12 +70,13 @@ const checkout = async (formData) => {
         username: validatedData.username,
         password: validatedData.password
     });
-    // const data = await fetch("", {
+    // const data = await fetch("http://localhost:8080/auth/register", {
     //     method: "POST",
     //     headers: "Content-Type", //header de json, n sei qual é 
     //     body: {
     //         username: validatedData.username
     //         password: validatedData.password
+    //         rememberMe: validatedData.rememberMe
     //     }
     // })
 }

@@ -11,11 +11,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.vital_essence.validation.security.JwtRequestFilter;
 
 @Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
 public class SecurityConfig {
+
     private final JwtRequestFilter jwtRequestFilter;
 
     public SecurityConfig(final JwtRequestFilter jwtRequestFilter) {
@@ -25,10 +25,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(csrf -> csrf.disable())
+        http.cors(cors -> cors.disable())
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
+<<<<<<< HEAD
                         .requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
                 .authorizeHttpRequests(authorize -> authorize.requestMatchers("/users/**").permitAll().anyRequest().authenticated())
+=======
+                        .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/auth/register").permitAll()
+                        .requestMatchers("/auth/login").permitAll()
+
+                        .anyRequest().authenticated()
+                )
+>>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 ).addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);

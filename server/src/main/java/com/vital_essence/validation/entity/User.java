@@ -11,13 +11,17 @@ public class User {
     private Long id;
     @Column(length = 50, unique = true)
     private String username;
+
     @Email
     @Column(unique = true, length = 120)
     private String email;
     @Column(length = 100)
     private String password;
     private Boolean rememberMe;
+<<<<<<< HEAD
     @Column(nullable = true, length = 4)
+=======
+>>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
     private Integer code;
 
     public User() {
@@ -66,11 +70,22 @@ public class User {
         return rememberMe;
     }
 
+<<<<<<< HEAD
+=======
+    public void setCode(final Integer code) {
+        this.code = code;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+>>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = password;
     }
 }

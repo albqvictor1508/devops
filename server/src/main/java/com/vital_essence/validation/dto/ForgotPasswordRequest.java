@@ -4,25 +4,13 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class ForgotPasswordRequest {
-    @Email
-    @NotBlank
-    private String email;
     @NotBlank
     private String newPassword;
+    @Email
+    private String email;
 
-    public ForgotPasswordRequest() {
-        super();
-    }
-    public ForgotPasswordRequest(final String email, final String newPassword) {
-        this.email = email;
+    public ForgotPasswordRequest(final String newPassword, final String email) {
         this.newPassword = newPassword;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -32,5 +20,13 @@ public class ForgotPasswordRequest {
 
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
