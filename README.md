@@ -1176,267 +1176,28 @@ Implement token refresh mechanisms for long-lived sessions.
 
 
 
-Password Storage:
-
-
-
-
+**Password Storage:**
 
 Passwords are hashed using BCryptPasswordEncoder, which is secure.
 
-
-
-Database Credentials:
-
-
-
-
+**Database Credentials:**
 
 Move sensitive data (spring.datasource.username, spring.datasource.password) to environment variables or a secrets manager.
 
-
-
-HTTPS:
-
-
-
-
-
-Deploy the application with HTTPS to encrypt data in transit.
-
-
-
-Input Validation:
-
-
-
-
+**Input Validation:**
 
 Validate all user inputs (e.g., username, email) on both frontend and backend to prevent injection attacks.
 
-
-
-CORS:
-
-
-
-
-
-Configure CORS in Spring Boot to allow only trusted origins (e.g., the frontend URL).
-
-12. Future Enhancements
-
-
-
-
-
-Email Integration:
-
-
-
-
-
-Use Spring Boot’s JavaMailSender for sending emails (e.g., for password reset links, notifications).
-
-
-
 Password Reset:
-
-
-
-
 
 Implement a secure token-based password reset flow with expiration.
 
-
-
-User Roles:
-
-
-
-
-
-Add support for roles (e.g., USER, ADMIN) in the users table and enforce role-based access control in Spring Security.
-
-
-
-Frontend Enhancements:
-
-
-
-
-
-Add client-side validation and better error handling.
-
-
-
-Improve UI/UX with animations and feedback (e.g., loading spinners).
-
-
-
-Testing:
-
-
-
-
-
-Expand test coverage for all endpoints and services.
-
-
-
-Implement end-to-end tests with tools like Cypress.
-
-13. Troubleshooting
-
-
-
-
-
-Bean Not Found Errors:
-
-
-
-
-
-Ensure all required packages are scanned by @SpringBootApplication (e.g., com.vital_essence.validation, com.example.security.jwt).
-
-
-
-Verify @Component or @Bean annotations on classes like JwtRequestFilter and JwtUtil.
-
-
-
-Example: If JwtRequestFilter is not found, add to @SpringBootApplication:
-
-@SpringBootApplication(scanBasePackages = {"com.vital_essence.validation", "com.example.security.jwt"})
-
-
-
-Database Connection Issues:
-
-
-
-
+### Database Connection Issues:
 
 Check PostgreSQL is running on localhost:6000 with correct credentials.
 
-
-
 Use tools like psql to test connectivity:
 
-psql -h localhost -p 6000 -U albqvxc -d vital-essence
-
-
+psql -h localhost -p 6000 -U **`<your_user>`** -d **`<your_db>`**
 
 Verify the JDBC URL and driver in application.properties.
-
-
-
-JWT Validation Errors:
-
-
-
-
-
-Ensure jwt.secret matches between token generation and validation.
-
-
-
-Check token expiration settings (jwt.expiration, jwt.expiration.remember).
-
-
-
-Debug JwtUtil methods for signature or claim issues.
-
-
-
-CORS Issues:
-
-
-
-
-
-If the frontend cannot access the backend, configure CORS in Spring Boot:
-
-@Bean
-public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration configuration = new CorsConfiguration();
-    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
-    configuration.setAllowedHeaders(Arrays.asList("*"));
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", configuration);
-    return source;
-}
-
-
-
-Frontend Fetch Errors:
-
-
-
-
-
-Ensure the backend URL in script.js matches the running backend (e.g., http://localhost:8080).
-
-
-
-Check browser console for CORS or network errors.
-
-
-
-Slow Database Queries:
-
-
-
-
-
-Add indexes to frequently queried columns (e.g., username, email):
-
-CREATE INDEX idx_users_username ON users(username);
-CREATE INDEX idx_users_email ON users(email);
-
-14. References
-
-
-
-
-
-Spring Boot Documentation
-
-
-
-Spring Security Reference
-
-
-
-Spring Security JWT Tutorial | Toptal
-
-
-
-JWT Authentication in Spring Boot 3 | Medium
-
-
-
-Spring Security Map Authorities from JWT | Baeldung
-
-
-
-PostgreSQL Documentation
-
-
-
-Nginx Documentation
-
-
-
-Heroku Dev Center
-
-
-
-Jest Documentation
-
-15. Contact
-
-For questions or contributions, contact the development team via the project repository or email (placeholder: dev@vital-essence.com).
-
