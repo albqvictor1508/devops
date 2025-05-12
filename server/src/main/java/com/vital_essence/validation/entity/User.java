@@ -15,13 +15,12 @@ public class User {
     @Email
     @Column(unique = true, length = 120)
     private String email;
+
     @Column(length = 100)
     private String password;
     private Boolean rememberMe;
-<<<<<<< HEAD
+
     @Column(nullable = true, length = 4)
-=======
->>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
     private Integer code;
 
     public User() {
