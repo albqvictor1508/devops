@@ -1,11 +1,12 @@
 package com.vital_essence.validation.controller;
 
-import com.vital_essence.validation.dto.AuthRequest;
+import com.vital_essence.validation.dto.CreateUserResponse;
 import com.vital_essence.validation.dto.ForgotPasswordRequest;
 import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,24 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserService service;
 
-    @PutMapping
-    public void changePassword() {
-
-    }
-
-    public User createUser(User u) {
-        if(u.getPassword().length() < 6) {
-            throw new RuntimeException("this password must to be more longer");
-        }
-        if(u.getUsername().length() < 6) {
-            throw new RuntimeException("this username must to be more longer");
-        }
-        return userService.save(u);
-    }
-
+    @PostMapping("/password")
     public User changePassword(ForgotPasswordRequest request) {
-        return userService.changePassword(request);
+        return service.changePassword(request);
+    }
+
+    @GetMapping("/test")
+    public CreateUserResponse testJwt(Long id) {
+
     }
 }

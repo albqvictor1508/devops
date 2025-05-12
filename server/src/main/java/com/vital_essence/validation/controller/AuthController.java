@@ -4,12 +4,11 @@ import com.vital_essence.validation.dto.AuthRequest;
 import com.vital_essence.validation.dto.CreateUserRequest;
 import com.vital_essence.validation.dto.CreateUserResponse;
 import com.vital_essence.validation.entity.User;
+import com.vital_essence.validation.service.CustomUserDetailsService;
 import com.vital_essence.validation.service.UserService;
 import com.vital_essence.validation.util.JwtUtil;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -21,24 +20,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
-@AllArgsConstructor
 public class AuthController {
+    @Autowired
     private AuthenticationManager authenticationManager;
-    private UserDetailsService userDetailsService;
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+    @Autowired
     private JwtUtil jwtUtil;
     @Autowired
     private UserService service;
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    public AuthController(final AuthenticationManager authenticationManager, final UserDetailsService userDetailsService, final JwtUtil jwtUtil, UserService service) {
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
-        this.userDetailsService = userDetailsService;
-        this.service = service;
-    }
-    public AuthController() {}
-
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthToken(@RequestBody  AuthRequest authRequest) {
@@ -53,7 +45,7 @@ public class AuthController {
             throw new BadCredentialsException("INVALID CREDENTIALS", e);
         }
 
-        final UserDetails userDetails = userDetailsService
+        final UserDetails userDetails = customUserDetailsService
                 .loadUserByUsername(authRequest.getUsername());
 
         final String jwt = jwtUtil.generateToken(userDetails, authRequest.isRememberMe());
@@ -62,23 +54,32 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> createUser(CreateUserRequest request) {
+    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest request) {
         if(request.getUsername().length() < 6) {
-            throw new BadCredentialsException("Username length must to be greather than 6 characters");
+            ResponseEntity.badRequest().body("Username length must to be greather than 6 characters");
         }
         if(request.getPassword().length() < 6) {
-            throw new BadCredentialsException("Password length must to be greather than 6 characters");
+            ResponseEntity.badRequest().body("Password length must to be greather than 6 characters");
         }
-        User u = new User();
-        u.setUsername(request.getUsername());
-        u.setEmail(request.getEmail());
-        String encodedPassword = passwordEncoder.encode(request.getPassword());
-        u.setPassword(encodedPassword);
-        service.save(u);
+            User u = new User();
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseEntity.status(201).body(new CreateUserResponse(u.getId(), jwt));
+        try {
+            u.setUsername(request.getUsername());
+            u.setEmail(request.getEmail());
+            String encodedPassword = passwordEncoder.encode(request.getPassword());
+            u.setPassword(encodedPassword);
+            service.save(u);
+        } catch (RuntimeException e) {
+            ResponseEntity.status(403).body("ERROR ON CREATE USER: " + e.getMessage());
+        }
+
+        try {
+            final UserDetails userDetails = customUserDetailsService.createUser(u);
+            final String jwt = jwtUtil.generateToken(userDetails);
+            return ResponseEntity.status(201).body(new CreateUserResponse(u.getId(), jwt));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(403).body("ERROR TO CREATE JWT: %s".formatted(e.getMessage()));
+        }
     }
 
     static record AuthenticationResponse(String jwt) {}
