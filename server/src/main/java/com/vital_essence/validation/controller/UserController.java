@@ -6,10 +6,9 @@ import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.security.JwtRequestFilter;
 import com.vital_essence.validation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
@@ -18,8 +17,16 @@ public class UserController {
     private UserService service;
 
     @PostMapping("/password")
-    public User changePassword(ForgotPasswordRequest request) {
-        return service.changePassword(request);
+    public ResponseEntity<?> changePassword(ForgotPasswordRequest request) throws BadCredentialsException  {
+        try {
+            return ResponseEntity.ok(service.changePassword(request));
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.badRequest().body("ERROR TO CHANGE PASSWORD: " + e);
+        }
     }
 
+    @PostMapping("/code/{id}")
+    public ResponseEntity<?> sendCode(@PathVariable Long id) {
+        User u = service.find
+    }
 }
