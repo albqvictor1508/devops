@@ -57,7 +57,7 @@ Set up PostgreSQL:
 
 Install PostgreSQL locally or use Docker:
 
-docker run -d --name vital-essence-db -p 6000:5432 -e POSTGRES_USER=albqvxc -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=vital-essence postgres
+docker run -d --name vital-essence-db -p 6000:5432 -e POSTGRES_USER=<your_user> -e POSTGRES_PASSWORD=<your-user> -e POSTGRES_DB=<your-db>
 
 Ensure the database vital-essence is created and accessible at localhost:6000.
 
