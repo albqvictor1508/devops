@@ -114,7 +114,7 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 ```
 
 ## Future Roadmap
-- [ ] Implement comprehensive email services
+- [x] Implement comprehensive email services
 - [ ] Enhance password management
 - [ ] Add multi-factor authentication
 - [ ] Develop advanced user roles and permissions
