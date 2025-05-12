@@ -37,7 +37,7 @@ The backend uses a PostgreSQL database for persistent storage, and the authentic
 #### Frontend
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <repository-url> .
    cd web
 
 Open the index.html file in a browser or use a local development server:
