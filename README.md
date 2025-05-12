@@ -182,9 +182,7 @@ Error (409 Conflict):
   "error": "Username or email already exists"
 }
 
-Planned Endpoints
-
-POST /auth/login:
+**POST /auth/login:**
 
 Authenticates a user and returns a JWT.
 
@@ -213,8 +211,6 @@ Response: { "message": "Password reset successfully" }
 Sends a notification email to the user (e.g., account confirmation).
 
 Request: { "email": "string", "message": "string" }
-
-
 
 Response: { "message": "Notification sent" }
 
