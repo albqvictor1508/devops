@@ -42,7 +42,7 @@ public class AuthController {
                     )
             );
         } catch (BadCredentialsException e) {
-            throw new BadCredentialsException("INVALID CREDENTIALS", e);
+            ResponseEntity.status(500).body("INVALID CREDENTIALS: " + e);
         }
 
         final UserDetails userDetails = customUserDetailsService
@@ -68,7 +68,6 @@ public class AuthController {
             u.setEmail(request.getEmail());
             String encodedPassword = passwordEncoder.encode(request.getPassword());
             u.setPassword(encodedPassword);
-            service.save(u);
         } catch (RuntimeException e) {
             ResponseEntity.status(403).body("ERROR ON CREATE USER: " + e.getMessage());
         }
@@ -76,6 +75,7 @@ public class AuthController {
         try {
             final UserDetails userDetails = customUserDetailsService.createUser(u);
             final String jwt = jwtUtil.generateToken(userDetails);
+            service.save(u);
             return ResponseEntity.status(201).body(new CreateUserResponse(u.getId(), jwt));
         } catch (RuntimeException e) {
             return ResponseEntity.status(403).body("ERROR TO CREATE JWT: %s".formatted(e.getMessage()));

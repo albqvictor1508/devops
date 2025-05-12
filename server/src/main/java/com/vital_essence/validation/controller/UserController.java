@@ -3,6 +3,7 @@ package com.vital_essence.validation.controller;
 import com.vital_essence.validation.dto.CreateUserResponse;
 import com.vital_essence.validation.dto.ForgotPasswordRequest;
 import com.vital_essence.validation.entity.User;
+import com.vital_essence.validation.security.JwtRequestFilter;
 import com.vital_essence.validation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +20,5 @@ public class UserController {
     @PostMapping("/password")
     public User changePassword(ForgotPasswordRequest request) {
         return service.changePassword(request);
-    }
-
-    @GetMapping("/test")
-    public CreateUserResponse testJwt(Long id) {
-
     }
 }
