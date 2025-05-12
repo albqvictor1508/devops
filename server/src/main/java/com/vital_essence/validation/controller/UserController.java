@@ -27,6 +27,7 @@ public class UserController {
 
     @PostMapping("/code/{id}")
     public ResponseEntity<?> sendCode(@PathVariable Long id) {
-        User u = service.find
+        User u = service.findById(id);
+        u.set
     }
 }

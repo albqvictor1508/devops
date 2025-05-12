@@ -4,6 +4,7 @@ import com.vital_essence.validation.dto.ForgotPasswordRequest;
 import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +21,10 @@ public class UserService {
         u.setPassword(request.getNewPassword());
         userRepo.save(u);
         return u;
+    }
+
+    public User findById(Long id) {
+        return userRepo.findById(id).orElseThrow(() -> new RuntimeException("User with this id not exist"));
     }
 
     public User save(User u) {
