@@ -1,6 +1,7 @@
 package com.vital_essence.validation.repository;
 
 import com.vital_essence.validation.entity.User;
+import jakarta.validation.constraints.Email;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    @Query(value = "SELECT * FROM users u WHERE u.username = :username", nativeQuery = true)
-    public Optional<User> findByUsername(@Param("username") String username);
-    public boolean existsByUsername(String username);
+    Optional<User> findByEmail(@Email String email);
+
+    User findByUsername(String username);
 }

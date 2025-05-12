@@ -2,13 +2,9 @@ package com.vital_essence.validation.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.*;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +17,46 @@ public class User {
     @Column(length = 100)
     private String password;
     private boolean rememberMe;
+
+    public User() {
+        super();
+    }
+    public User(final String username, final String email, final String password, final boolean rememberMe) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.rememberMe = rememberMe;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(final String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public void setRememberMe(final boolean rememberMe) {
+        this.rememberMe = rememberMe;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
