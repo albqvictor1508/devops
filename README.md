@@ -749,19 +749,6 @@ The project plans to implement email-related features, such as registration conf
 
 Configuration
 
-
-
-
-
-Add the Spring Boot Mail dependency:
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-mail</artifactId>
-</dependency>
-
-
-
 Configure email properties in application.properties:
 
 spring.mail.host=smtp.gmail.com
@@ -771,13 +758,7 @@ spring.mail.password=your-app-specific-password
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 
-
-
-
-
 Note: Use an app-specific password for Gmail or a similar secure credential for other providers.
-
-
 
 Create an email service:
 
@@ -801,13 +782,7 @@ public class EmailService {
 
 Usage
 
-
-
-
-
 Registration Confirmation: Send an email after successful registration.
-
-
 
 Password Reset: Generate a secure token, store it in the database with an expiration, and send a reset link.
 
@@ -815,27 +790,13 @@ Password Reset: Generate a secure token, store it in the database with an expira
 
 Backend Testing
 
-
-
-
-
 Tools: JUnit 5, Mockito, Spring Boot Test, Spring Security Test.
-
-
 
 Setup:
 
-
-
-
-
 Ensure test dependencies are included (see Dependencies section).
 
-
-
 Create test classes in src/test/java.
-
-
 
 Example Test (for AuthController):
 
@@ -860,31 +821,17 @@ public class AuthControllerTest {
     }
 }
 
-
-
 Running Tests:
 
 mvn test
 
 Frontend Testing
 
-
-
-
-
 Tools: Jest with jest-dom for unit testing DOM interactions.
-
-
 
 Setup:
 
-
-
-
-
 Install Node.js and npm.
-
-
 
 Initialize a Node project in the frontend directory:
 
@@ -995,51 +942,7 @@ Restart Nginx:
 
 sudo systemctl restart nginx
 
-
-
 Note: Use HTTPS by configuring SSL with Let’s Encrypt.
-
-Backend Deployment
-
-
-
-
-
-Option: Deploy to a Platform-as-a-Service (PaaS) like Heroku or a VPS with a Java runtime.
-
-
-
-Steps with Heroku:
-
-
-
-
-
-Install Heroku CLI and login:
-
-heroku login
-
-
-
-Create a Heroku app:
-
-cd backend
-heroku create vital-essence-backend
-
-
-
-Add PostgreSQL add-on:
-
-heroku addons:create heroku-postgresql:hobby-dev
-
-
-
-Configure environment variables:
-
-heroku config:set SPRING_DATASOURCE_URL=$(heroku config:get DATABASE_URL)
-heroku config:set SPRING_DATASOURCE_USERNAME=albqvxc
-heroku config:set SPRING_DATASOURCE_PASSWORD=docker
-heroku config:set JWT_SECRET=your-secure-secret
 
 10. Development Workflow
 
