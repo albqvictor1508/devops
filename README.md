@@ -1041,140 +1041,33 @@ heroku config:set SPRING_DATASOURCE_USERNAME=albqvxc
 heroku config:set SPRING_DATASOURCE_PASSWORD=docker
 heroku config:set JWT_SECRET=your-secure-secret
 
-
-
-Deploy the application:
-
-git push heroku main
-
-
-
-Note: Update the frontend to use the deployed backend URL (e.g., https://vital-essence-backend.herokuapp.com).
-
 10. Development Workflow
 
 Git Workflow
 
-
-
-
-
 Branching:
-
-
-
-
 
 main: Production-ready code.
 
-
-
 develop: Integration branch for features.
-
-
-
-Feature branches: feature/<feature-name> (e.g., feature/login-endpoint).
-
-
 
 Commit Messages:
 
-
-
-
-
 Use descriptive messages: Add user registration endpoint, Fix CORS configuration.
-
-
 
 Pull Requests:
 
-
-
-
-
 Create PRs from feature branches to develop.
-
-
-
-Include a description of changes and link to any issues.
-
-
-
-Require at least one reviewer approval before merging.
-
-
-
-Commands:
-
-git checkout -b feature/<feature-name>
-git commit -m "Description of changes"
-git push origin feature/<feature-name>
-# Create PR on GitHub/GitLab
-
-Coding Standards
-
-
-
-
-
-Backend:
-
-
-
-
-
-Follow Java naming conventions (e.g., camelCase for variables, UpperCamelCase for classes).
-
-
-
-Use @RestController and @Service annotations appropriately.
-
-
-
-Validate inputs with @Valid and handle exceptions with @ExceptionHandler.
-
-
-
-Frontend:
-
-
-
-
-
-Use semantic HTML5 tags.
-
-
-
-Keep CSS modular and scoped to components.
-
-
-
-Write modular JavaScript with clear function names.
 
 11. Security Considerations
 
-
-
-
-
 JWT Security:
-
-
-
-
 
 Use a strong, randomly generated jwt.secret (at least 256 bits) in production.
 
-
-
 Ensure JwtUtil validates token signatures, expiration, and claims.
 
-
-
 Implement token refresh mechanisms for long-lived sessions.
-
-
 
 **Password Storage:**
 
