@@ -5,6 +5,7 @@
 **Vital Essence** is a web application designed to manage user authentication and related functionalities. It consists of two main components:
 
 - **Frontend**: A lightweight interface built with HTML, CSS, and vanilla JavaScript, providing a user-friendly experience for interacting with backend services.
+
 - **Backend**: A Spring Boot application implementing JWT (JSON Web Token) authentication, currently supporting user creation, with planned features for email-related operations and password management.
 
 The backend uses a PostgreSQL database for persistent storage, and the authentication system leverages Spring Security with JWT for secure, stateless session management. The project is in its early stages, with a single user creation endpoint, and will expand to include email notifications and password reset functionality.
@@ -37,70 +38,32 @@ The backend uses a PostgreSQL database for persistent storage, and the authentic
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd vital-essence/frontend
-
-
-
-
+   cd web
 
 Open the index.html file in a browser or use a local development server:
 
 # Using VS Code Live Server
 code . && live-server
 
-
-
 The frontend files (index.html, styles.css, script.js) are located in the frontend directory. No build step is required, as it uses vanilla HTML, CSS, and JavaScript.
 
 Backend
 
-
-
-
-
 Navigate to the backend directory:
 
-cd vital-essence/backend
-
-
+cd server
 
 Set up PostgreSQL:
-
-
-
-
 
 Install PostgreSQL locally or use Docker:
 
 docker run -d --name vital-essence-db -p 6000:5432 -e POSTGRES_USER=albqvxc -e POSTGRES_PASSWORD=docker -e POSTGRES_DB=vital-essence postgres
 
-
-
 Ensure the database vital-essence is created and accessible at localhost:6000.
-
-
 
 Configure the application properties:
 
-
-
-
-
-Edit src/main/resources/application.properties:
-
-spring.application.name=validation
-spring.datasource.username=albqvxc
-spring.datasource.password=docker
-spring.datasource.url=jdbc:postgresql://localhost:6000/vital-essence
-jwt.secret=devops-project
-jwt.expiration=86400000
-jwt.expiration.remember=604800000
-
-
-
 Security Note: Replace jwt.secret with a cryptographically secure key in production and use environment variables for sensitive data.
-
-
 
 Build and run the application:
 
@@ -109,169 +72,33 @@ mvn spring-boot:run
 
 The backend will start on http://localhost:8080.
 
-Project Structure
-
-vital-essence/
-├── frontend/
-│   ├── index.html        # Main HTML file
-│   ├── styles.css        # CSS styles
-│   └── script.js         # JavaScript for frontend logic
-├── backend/
-│   ├── src/main/java/com/vital_essence/validation/
-│   │   ├── controller/   # REST controllers (e.g., AuthController)
-│   │   ├── security/     # Security configurations (e.g., SecurityConfig, JwtRequestFilter)
-│   │   ├── util/         # Utility classes (e.g., JwtUtil)
-│   │   └── ValidationApplication.java  # Main Spring Boot application
-│   └── src/main/resources/
-│       └── application.properties  # Configuration file
-├── README.md             # Project overview
-└── pom.xml               # Maven dependencies (backend)
-
 3. Dependencies
 
-Backend Dependencies
+**`Backend Dependencies`**
 
 The backend uses Maven for dependency management. Key dependencies in pom.xml include:
 
-<dependencies>
-    <!-- Spring Boot Starter Web -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <!-- Spring Boot Starter Security -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-security</artifactId>
-    </dependency>
-    <!-- Spring Boot Starter Data JPA -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-    <!-- PostgreSQL Driver -->
-    <dependency>
-        <groupId>org.postgresql</groupId>
-        <artifactId>postgresql</artifactId>
-        <scope>runtime</scope>
-    </dependency>
-    <!-- JWT Library -->
-    <dependency>
-        <groupId>io.jsonwebtoken</groupId>
-        <artifactId>jjwt</artifactId>
-        <version>0.9.1</version>
-    </dependency>
-    <!-- Lombok for boilerplate reduction -->
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <scope>provided</scope>
-    </dependency>
-    <!-- Spring Boot Starter Test (for testing) -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-test</artifactId>
-        <scope>test</scope>
-    </dependency>
-    <!-- Spring Security Test -->
-    <dependency>
-        <groupId>org.springframework.security</groupId>
-        <artifactId>spring-security-test</artifactId>
-        <scope>test</scope>
-    </dependency>
-</dependencies>
+**`Frontend Dependencies`**
 
-Frontend Dependencies
-
-The frontend uses vanilla HTML, CSS, and JavaScript with no external dependencies. Optional tools for development:
-
-
-
-
-
-Normalize.css: For consistent CSS rendering across browsers.
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-
-
-
-Axios: For simplified HTTP requests (optional, if fetch is insufficient).
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
-
-4. Architecture
-
-Frontend
-
-
-
-
-
-Technologies: HTML5, CSS3, vanilla JavaScript.
-
-
-
-Purpose: Provides a simple interface for user interactions, such as signing up. It communicates with the backend via HTTP requests (using fetch API).
-
-
-
-Key Features:
-
-
-
-
-
-Form for user registration.
-
-
+The frontend uses vanilla HTML, CSS, and JavaScript with no external dependencies.
 
 (Planned) Forms for login, password reset, and email notifications.
 
-
-
 Design Principles:
-
-
-
-
 
 Minimalist and responsive design.
 
-
-
 No external frameworks to keep it lightweight.
-
-
 
 Asynchronous requests to the backend for a smooth user experience.
 
 Backend
 
-
-
-
-
 Technologies: Spring Boot 3.x, Spring Security 6.x, PostgreSQL, JWT.
-
-
 
 Purpose: Handles authentication, user management, and (planned) email and password functionalities.
 
-
-
 Key Components:
-
-
-
-
-
-SecurityConfig: Configures Spring Security with stateless JWT authentication, disabling CSRF and enabling public access to /auth/** endpoints.
-
-
-
-JwtRequestFilter: Validates JWT tokens in the Authorization header and sets the security context.
-
-JwtUtil: Utility class for JWT operations (e.g., token generation, validation, username extraction).
 
 AuthController: Handles authentication-related requests, such as user creation.
 
@@ -482,63 +309,6 @@ Setup:
 Install Node.js and npm.
 
 Initialize a Node project in the frontend directory:
-
-cd frontend
-npm init -y
-npm install --save-dev jest @testing-library/dom @testing-library/jest-dom
-
-
-
-Add to package.json:
-
-"scripts": {
-    "test": "jest"
-}
-
-
-
-Example Test (for script.js):
-
-/**
- * @jest-environment jsdom
- */
-import '@testing-library/jest-dom';
-
-describe('Register Form', () => {
-    test('submits form data correctly', async () => {
-        document.body.innerHTML = `
-            <form id="registerForm">
-                <input id="username" value="testuser">
-                <input id="email" value="test@example.com">
-                <input id="password" value="password123">
-                <button type="submit">Register</button>
-            </form>
-        `;
-        global.fetch = jest.fn(() =>
-            Promise.resolve({
-                ok: true,
-                json: () => Promise.resolve({ message: 'User created successfully' })
-            })
-        );
-
-        require('./script.js');
-
-        const form = document.getElementById('registerForm');
-        form.dispatchEvent(new Event('submit'));
-
-        await new Promise(process.nextTick);
-        expect(fetch).toHaveBeenCalledWith(
-            'http://localhost:8080/auth/register',
-            expect.objectContaining({
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username: 'testuser', password: 'password123', email: 'test@example.com' })
-            })
-        );
-    });
-});
-
-
 
 Running Tests:
 
