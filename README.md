@@ -271,109 +271,53 @@ SecurityConfig: Configures Spring Security with stateless JWT authentication, di
 
 JwtRequestFilter: Validates JWT tokens in the Authorization header and sets the security context.
 
-
-
 JwtUtil: Utility class for JWT operations (e.g., token generation, validation, username extraction).
 
-
-
 AuthController: Handles authentication-related requests, such as user creation.
-
-
 
 Database: PostgreSQL stores user data, with credentials configured in application.properties.
 
 Authentication Flow
 
-
-
-
-
 User Registration:
-
-
-
-
 
 The frontend sends a POST request to /auth/register with user details (e.g., username, password).
 
-
-
 The backend creates the user in the database and returns a success response.
-
-
 
 User Login (Planned):
 
-
-
-
-
 The frontend sends a POST request to /auth/login with credentials.
-
-
 
 The backend authenticates using AuthenticationManager, generates a JWT via JwtUtil, and returns it.
 
-
-
 Protected Requests:
-
-
-
-
 
 The frontend includes the JWT in the Authorization header (Bearer <token>).
 
-
-
 JwtRequestFilter validates the token, sets the authentication context, and allows access to protected endpoints.
-
-
 
 Email and Password Features (Planned):
 
-
-
-
-
 Email notifications for account actions (e.g., registration confirmation).
-
-
 
 Password reset via email with a secure token.
 
-5. API Specification
+**5. API Specification**
 
 Current Endpoints
 
 POST /auth/register
 
-
-
-
-
 Description: Creates a new user in the system.
-
-
 
 Request:
 
-
-
-
-
 Method: POST
-
-
 
 URL: /auth/register
 
-
-
 Headers: Content-Type: application/json
-
-
 
 Body:
 
@@ -383,31 +327,15 @@ Body:
   "email": "string"
 }
 
-
-
-Constraints:
-
-
-
-
+**Constraints:**
 
 username: Unique, 3-50 characters.
 
-
-
 password: Minimum 8 characters, must include letters and numbers.
-
-
 
 email: Valid email format.
 
-
-
 Response:
-
-
-
-
 
 Success (201 Created):
 
@@ -415,15 +343,11 @@ Success (201 Created):
   "message": "User created successfully"
 }
 
-
-
 Error (400 Bad Request):
 
 {
   "error": "Invalid input data"
 }
-
-
 
 Error (409 Conflict):
 
@@ -433,73 +357,33 @@ Error (409 Conflict):
 
 Planned Endpoints
 
-
-
-
-
 POST /auth/login:
-
-
-
-
 
 Authenticates a user and returns a JWT.
 
-
-
 Request: { "username": "string", "password": "string" }
-
-
 
 Response: { "token": "string" }
 
-
-
-POST /auth/forgot-password:
-
-
-
-
+**POST /auth/forgot-password:**
 
 Initiates a password reset process by sending a reset link via email.
 
-
-
 Request: { "email": "string" }
-
-
 
 Response: { "message": "Reset link sent" }
 
-
-
-POST /auth/reset-password:
-
-
-
-
+**POST /auth/reset-password:**
 
 Resets the user’s password using a token sent via email.
 
-
-
 Request: { "token": "string", "newPassword": "string" }
-
-
 
 Response: { "message": "Password reset successfully" }
 
-
-
-POST /auth/send-notification:
-
-
-
-
+**POST /auth/send-notification:**
 
 Sends a notification email to the user (e.g., account confirmation).
-
-
 
 Request: { "email": "string", "message": "string" }
 
@@ -507,247 +391,11 @@ Request: { "email": "string", "message": "string" }
 
 Response: { "message": "Notification sent" }
 
-6. Implementation Details
-
-Frontend
-
-
-
-
-
-index.html: Contains a form for user registration, styled with styles.css.
-
-
-
-script.js: Handles form submission, sending a fetch request to /auth/register.
-
-
-
-styles.css: Ensures a responsive, user-friendly design.
-
-Example Frontend Code
-
-Below is a complete example of the frontend files to illustrate the registration functionality.
-
-index.html:
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vital Essence - Register</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Vital Essence</h1>
-        <form id="registerForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
-
-styles.css:
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-.form-group {
-    margin-bottom: 1rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #555;
-}
-
-input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-script.js:
-
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const email = document.getElementById('email').value;
-
-    try {
-        const response = await fetch('http://localhost:8080/auth/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password, email })
-        });
-        const data = await response.json();
-        if (response.ok) {
-            alert(data.message);
-            document.getElementById('registerForm').reset();
-        } else {
-            alert(`Error: ${data.error}`);
-        }
-    } catch (error) {
-        alert('Network error: ' + error.message);
-    }
-});
-
-Backend
-
-
-
-
-
 SecurityConfig: Configures Spring Security with JWT authentication:
-
-@Configuration
-@EnableWebSecurity
-@AllArgsConstructor
-public class SecurityConfig {
-    private final JwtRequestFilter jwtRequestFilter;
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated())
-            .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-}
-
-
 
 JwtRequestFilter: Validates JWT tokens and sets the security context.
 
-
-
 JwtUtil: Handles JWT operations (not shown but assumed to include token generation, validation, and username extraction).
-
-
-
-AuthController: Manages authentication endpoints (example for /auth/register):
-
-@RestController
-@RequestMapping("/auth")
-public class AuthController {
-    private final UserService userService;
-    private final AuthenticationManager authenticationManager;
-
-    public AuthController(UserService userService, AuthenticationManager authenticationManager) {
-        this.userService = userService;
-        this.authenticationManager = authenticationManager;
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody UserDTO userDTO) {
-        try {
-            userService.createUser(userDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseDTO("User created successfully"));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new ResponseDTO(e.getMessage()));
-        } catch (DataIntegrityViolationException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ResponseDTO("Username or email already exists"));
-        }
-    }
-}
-
-Database
-
-
-
-
-
-Schema: A users table with columns for id (primary key), username, password (hashed with BCrypt), email, and created_at.
-
-
-
-Example SQL:
-
-CREATE TABLE users (
-    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-7. Email Integration (Planned)
-
-Overview
-
-The project plans to implement email-related features, such as registration confirmations and password reset links. This will use Spring Boot’s JavaMailSender to send emails via an SMTP server (e.g., Gmail, SendGrid).
-
-Configuration
 
 Configure email properties in application.properties:
 
