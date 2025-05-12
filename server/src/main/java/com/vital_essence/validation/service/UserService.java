@@ -4,11 +4,6 @@ import com.vital_essence.validation.dto.ForgotPasswordRequest;
 import com.vital_essence.validation.entity.User;
 import com.vital_essence.validation.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-=======
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.http.ResponseEntity;
->>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
@@ -32,9 +27,6 @@ public class UserService {
     }
 
     public User findById(Long id) {
-<<<<<<< HEAD
-        return userRepo.findById(id).orElseThrow(() -> new BadCredentialsException("USER WITH THIS ID NOT EXISTS"));
-=======
         return userRepo.findById(id).orElseThrow(() -> new RuntimeException("User with this id not exist"));
     }
 
@@ -53,7 +45,6 @@ public class UserService {
         if(!(u.getCode().equals(code))) {
             throw new BadCredentialsException("INVALID CODE, USER CODE: " + u.getCode() + ", SENDED CODE: " + code);
         }
->>>>>>> 8a30bd012cd095bbf8920ccef7932521899732f2
     }
 
     public User save(User u) {
