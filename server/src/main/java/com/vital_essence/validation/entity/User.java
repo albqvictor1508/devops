@@ -16,7 +16,9 @@ public class User {
     private String email;
     @Column(length = 100)
     private String password;
-    private boolean rememberMe;
+    private Boolean rememberMe;
+    @Column(nullable = true, length = 4)
+    private Integer code;
 
     public User() {
         super();
@@ -26,6 +28,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.rememberMe = rememberMe;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(final Integer code) {
+        this.code = code;
     }
 
     public Long getId() {
@@ -50,6 +60,10 @@ public class User {
 
     public void setRememberMe(final boolean rememberMe) {
         this.rememberMe = rememberMe;
+    }
+
+    public Boolean isRememberMe() {
+        return rememberMe;
     }
 
     public String getPassword() {
