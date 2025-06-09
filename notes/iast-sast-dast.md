@@ -52,7 +52,11 @@ A principal atualmente é o **Burp Suite**
 
 ## IAST - Interactive Application Security Test
 
-Combina o SAST com o DAST, analisando o app em tempo de execução com acesso interno ao código e contexto 
+Combina o SAST com o DAST, analisando o app em tempo de execução com acesso interno ao código e contexto
+
+### Como funciona
+
+**"Instalando um agente na aplicação durante os testes funcionais ou QA, Ele observa como o código se comporta em tempo real e verifica vulnerabilidades com maior precisão"**
 
 ### Vantagens 
 
