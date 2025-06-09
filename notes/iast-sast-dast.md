@@ -26,8 +26,12 @@ Atua no código-fonte (que pode ser tanto o código normal, o bytecode compilado
 ## DAST - Dinamic Application Security Test
 
 Verifica como as informações são contidas dentro da rotina da aplicação (input, output, tempo de resposta, latência, entre outros).
-Simula ataques reais ao sistema (caixa preta)
-Além de que, diferente do SAST, que o bom é que seja feito frequentemente, o DAST não é a melhor alternativa para isso
+Diferente do SAST, que o bom é que seja feito frequentemente, o DAST não é a melhor alternativa para isso
+Simula ataques reais ao sistema (caixa preta), como:
+ - XSS
+ - CSRF
+ - SQL Injection
+ - Problemas de autenticação / autorização
 
 ### Vantagens
 
@@ -41,6 +45,10 @@ Além de que, diferente do SAST, que o bom é que seja feito frequentemente, o D
 - Não fornece informações sobre as causas dessas vulnerabilidades
 - Poder apresentar problemas para manter um padrão de codificação nos relatórios
 - E o primeiro ponto das vantagens do DAST também pode ser uma desvantagem, caso estejamos falando de sistemas em estágios iniciais 
+
+### Ferramentas 
+
+
 
 ## IAST - Interactive Application Security Test
 
