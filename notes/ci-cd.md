@@ -21,3 +21,4 @@ Geralmente ligado à metodologia Agile
 
 CI = cuida no tratamento do código, onde faz o build e executa testes e só passa se os testes derem certo
 CD = garante a entrega do código tratado ao destino final, como por exemplo, a máquina virtual onde a aplicação está rodando, fazendo deploy em produção, deploy em staging (homolog), entre outros
+Pipeline = Automatiza o fluxo (sequência) desses dois passos, desde o commit até a produção
