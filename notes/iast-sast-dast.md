@@ -33,3 +33,5 @@ Além de que, diferente do SAST, que o bom é que seja feito frequentemente, o D
 - Não fornece informações sobre as causas dessas vulnerabilidades
 - Poder apresentar problemas para manter um padrão de codificação nos relatórios
 - E o primeiro ponto das vantagens do DAST também pode ser uma desvantagem, caso estejamos falando de sistemas em estágios iniciais 
+
+## IAST - Interactive Application Security Test
