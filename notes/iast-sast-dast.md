@@ -61,5 +61,6 @@ Combina o SAST com o DAST, analisando o app em tempo de execução com acesso in
 ### Vantagens 
 
 - Bem menos falsos positivos, pois tem acesso a execução real + código
+- Detecta vulnerabilidades precisas com o contexto
 
 ### Desvantagens
