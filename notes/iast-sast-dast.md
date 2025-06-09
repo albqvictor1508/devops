@@ -8,3 +8,8 @@ Atua no código-fonte do produto, verificando erros de sintaxe e coisas do tipo,
 
 - Descobrem falhas de segurança complexas em pouco tempo
 - Simples de fazer (é literalmente debuggar, ler cada linha e raciocinar se aquela lógica encaminha até a solução)
+
+### Desvantagens
+
+- Em grandes projetos, é bem complicado porque tem muito código
+- Como não é testado em ambiente de produção, muitas regras de negócio não são testadas
