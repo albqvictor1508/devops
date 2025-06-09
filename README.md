@@ -37,12 +37,7 @@ graph TD
 
 ### Prerequisites
 
-#### Frontend Requirements
-- 🌐 Modern web browser
-- 💻 Code editor (VS Code recommended)
-- 🔧 Optional: Local web server
-
-#### Backend Requirements
+#### Requirements
 - ☕ Java 17+
 - 🏗️ Maven or Gradle
 - 🗃️ PostgreSQL 13+
@@ -50,17 +45,7 @@ graph TD
 
 ### Installation Guide
 
-#### Frontend Setup
-```bash
-# Clone the repository
-git clone <repository-url>
-cd web
-
-# Use VS Code Live Server
-code . && live-server
-```
-
-#### Backend Setup
+#### Setup
 ```bash
 # Navigate to backend directory
 cd server
