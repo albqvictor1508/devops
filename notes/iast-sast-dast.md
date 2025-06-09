@@ -16,6 +16,13 @@ Atua no código-fonte do produto, verificando erros de sintaxe e coisas do tipo,
 - Em grandes projetos, é bem complicado porque tem muito código
 - Como não é testado em ambiente de produção, muitas regras de negócio não são testadas
 
+### Ferramentas
+
+- ESLint e Biome (JS / TS)
+- SonarQube
+- Checkmarx
+- Bandit (Python)
+
 ## DAST - Dinamic Application Security Test
 
 Verifica como as informações são contidas dentro da rotina da aplicação (input, output, tempo de resposta, latência, entre outros).
@@ -35,6 +42,8 @@ Além de que, diferente do SAST, que o bom é que seja feito frequentemente, o D
 - E o primeiro ponto das vantagens do DAST também pode ser uma desvantagem, caso estejamos falando de sistemas em estágios iniciais 
 
 ## IAST - Interactive Application Security Test
+
+O IAST usa "instrumentação de software" para
 
 ### Vantagens 
 
