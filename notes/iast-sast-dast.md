@@ -69,3 +69,7 @@ Combina o SAST com o DAST, analisando o app em tempo de execução com acesso in
 - Requer instrumentação da aplicação (pode impactar performance).
 - Pode ser mais complexo de configurar.
 - Menor quantidade de ferramentas disponíveis comparado ao SAST e DAST.
+
+### Ferramentas
+
+- Contrast Security
