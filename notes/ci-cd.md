@@ -8,3 +8,7 @@ Ex.:
 ## Continuos Integration - CI
 
 Automatização de build e teste de código quando um dev commita algo no repo
+
+## Continuos Delivery - CD
+
+
