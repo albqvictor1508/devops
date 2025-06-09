@@ -35,3 +35,7 @@ Além de que, diferente do SAST, que o bom é que seja feito frequentemente, o D
 - E o primeiro ponto das vantagens do DAST também pode ser uma desvantagem, caso estejamos falando de sistemas em estágios iniciais 
 
 ## IAST - Interactive Application Security Test
+
+### Vantagens 
+
+### Desvantagens
