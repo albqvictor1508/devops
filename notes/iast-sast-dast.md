@@ -48,7 +48,7 @@ Simula ataques reais ao sistema (caixa preta), como:
 
 ### Ferramentas 
 
-
+A principal atualmente é o **Burp Suite**
 
 ## IAST - Interactive Application Security Test
 
