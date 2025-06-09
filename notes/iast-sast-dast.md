@@ -74,3 +74,4 @@ Combina o SAST com o DAST, analisando o app em tempo de execução com acesso in
 
 - Contrast Security
 - Seeker (Synopsys)
+- AppScan IAST
