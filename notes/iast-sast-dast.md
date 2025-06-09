@@ -19,10 +19,17 @@ Atua no código-fonte do produto, verificando erros de sintaxe e coisas do tipo,
 ## DAST - Dinamic Application Security Test
 
 Verifica como as informações são contidas dentro da rotina da aplicação (input, output, tempo de resposta, latência, entre outros).
-Detecta falhas de rede, performance, problemas de autenticação, tem um custo benefício maior e apresenta poucos falsos positivos
-
-
+Além de que, diferente do SAST, que o bom é que seja feito frequentemente, o DAST não é a melhor alternativa para isso
 
 ### Vantagens
 
+- DAST geralmente é feito com o sistema rodando
+- Detecta falhas de rede, performance, problemas de autenticação, 
+- Tem um custo benefício maior 
+- Apresenta poucos falsos positivos
+
 ### Desvantagens
+
+- Não fornece informações sobre as causas dessas vulnerabilidades
+- Poder apresentar problemas para manter um padrão de codificação nos relatórios
+- E o primeiro ponto das vantagens do DAST também pode ser uma desvantagem, caso estejamos falando de sistemas em estágios iniciais 
