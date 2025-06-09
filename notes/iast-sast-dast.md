@@ -4,7 +4,7 @@
 
 ## SAST - Static Application Security Test
 
-Atua no código-fonte do produto, verificando erros de sintaxe e coisas do tipo, sem rodar o app
+Atua no código-fonte (que pode ser tanto o código normal, o bytecode compilado ou o binário) do produto, verificando erros de sintaxe e coisas do tipo, sem rodar o app
 
 ### Vantagens
 
@@ -26,6 +26,7 @@ Atua no código-fonte do produto, verificando erros de sintaxe e coisas do tipo,
 ## DAST - Dinamic Application Security Test
 
 Verifica como as informações são contidas dentro da rotina da aplicação (input, output, tempo de resposta, latência, entre outros).
+Simula ataques reais ao sistema (caixa preta)
 Além de que, diferente do SAST, que o bom é que seja feito frequentemente, o DAST não é a melhor alternativa para isso
 
 ### Vantagens
